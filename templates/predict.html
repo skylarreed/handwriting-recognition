@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwriting Digitizer - Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        .back-arrow {
+            font-size: 24px;
+            font-weight: bold;  /* Make it more bold */
+            color: #333;        /* Change the color to dark grey */
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .back-arrow:hover {
+            color: #555;        /* Change the hover color to a slightly darker grey */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .prediction {
+            margin-top: 20px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span class="back-arrow" onclick="goBack()">←</span>
+            Handwriting Digitizer - Prediction
+        </h1>
+        <img src="data:image/png;base64,{{ encoded_image_data }}" alt="Uploaded Image">
+        <div class="prediction">
+            <strong>Prediction:</strong> {{ prediction }}
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

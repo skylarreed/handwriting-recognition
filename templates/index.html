@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handwriting Digitizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        label {
+            display: block;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        label:hover {
+            background-color: #2980b9;
+        }
+        .file-name {
+            margin-top: 10px;
+            color: #777;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #2ecc71;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #27ae60;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Handwriting Digitizer</h1>
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" accept=".png, .jpg, .jpeg" required>
+            <label for="fileInput">Choose a file</label>
+            <br>
+            <span class="file-name" id="fileName">No file chosen</span>
+            <button type="button" onclick="submitForm()">Submit</button>
+            <div class="error-message" id="errorMessage"></div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("fileInput").addEventListener("change", function() {
+            var fileName = this.files[0].name;
+            document.getElementById("fileName").innerText = fileName;
+        });
+
+        function submitForm() {
+            var fileInput = document.getElementById("fileInput");
+            var errorMessage = document.getElementById("errorMessage");
+
+            // Check if a file is selected
+            if (fileInput.files.length === 0) {
+                errorMessage.innerText = "Please choose a file";
+            } else {
+                errorMessage.innerText = "";
+                var form = document.getElementById("uploadForm");
+                form.submit();
+            }
+        }
+    </script>
+</body>
+</html>
